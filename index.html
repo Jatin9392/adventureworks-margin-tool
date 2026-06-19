@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdventureWorks Margin Tool</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>AdventureWorks Margin Tool</h1>
+        <p>Choose a product, apply a discount, and see margin change instantly.</p>
+      </div>
+      <div class="db-badge" id="dbBadge">GitHub Pages demo data</div>
+    </header>
+
+    <main>
+      <section class="controls">
+        <label for="searchInput">Search product</label>
+        <div class="search-row">
+          <input id="searchInput" type="search" placeholder="Product name, number, or ID">
+          <button id="searchButton" type="button">Search</button>
+        </div>
+
+        <label for="productSelect">Product</label>
+        <select id="productSelect"></select>
+
+        <div class="discount-header">
+          <label for="discountRange">Discount</label>
+          <output id="discountOutput">0.0%</output>
+        </div>
+        <input id="discountRange" type="range" min="0" max="60" step="0.1" value="0">
+        <div class="range-scale">
+          <span>0%</span>
+          <span>60%</span>
+        </div>
+
+        <label for="discountInput">Type discount manually</label>
+        <input id="discountInput" type="number" min="0" max="60" step="0.1" value="0">
+
+        <div class="note">
+          This shared demo uses a snapshot from AdventureWorks2025. The SQL-backed local version reads directly from SQL Server.
+        </div>
+      </section>
+
+      <section class="results">
+        <div class="top-grid">
+          <div class="metric">
+            <span>New Selling Price</span>
+            <strong id="newPrice">$0.00</strong>
+          </div>
+          <div class="metric">
+            <span>New Gross Profit</span>
+            <strong id="grossProfit">$0.00</strong>
+          </div>
+          <div class="metric">
+            <span>New Margin</span>
+            <strong id="margin">$0.00</strong>
+          </div>
+          <div class="metric">
+            <span>Decision</span>
+            <strong><mark id="decision">Select Product</mark></strong>
+          </div>
+        </div>
+
+        <div class="details">
+          <div>
+            <h2 id="productName">No product selected</h2>
+            <p id="productMeta">Search or choose a product to begin.</p>
+          </div>
+
+          <div class="table">
+            <div><span>Original list price</span><strong id="listPrice">$0.00</strong></div>
+            <div><span>Standard cost</span><strong id="standardCost">$0.00</strong></div>
+            <div><span>Original margin</span><strong id="originalMargin">0.0%</strong></div>
+            <div><span>Original markup</span><strong id="originalMarkup">0.0%</strong></div>
+            <div><span>Discount value</span><strong id="discountValue">$0.00</strong></div>
+            <div><span>Margin movement</span><strong id="marginMovement">0.0 points</strong></div>
+            <div><span>Break-even discount</span><strong id="breakEvenDiscount">0.0%</strong></div>
+          </div>
+        </div>
+
+        <div class="bars" aria-label="Margin waterfall">
+          <div class="bar-row">
+            <span>List Price</span>
+            <div class="bar-track"><div id="priceBar" class="bar price"></div></div>
+            <strong id="priceBarText">$0.00</strong>
+          </div>
+          <div class="bar-row">
+            <span>Discount</span>
+            <div class="bar-track"><div id="discountBar" class="bar discount"></div></div>
+            <strong id="discountBarText">$0.00</strong>
+          </div>
+          <div class="bar-row">
+            <span>Cost</span>
+            <div class="bar-track"><div id="costBar" class="bar cost"></div></div>
+            <strong id="costBarText">$0.00</strong>
+          </div>
+          <div class="bar-row">
+            <span>Profit</span>
+            <div class="bar-track"><div id="profitBar" class="bar profit"></div></div>
+            <strong id="profitBarText">$0.00</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
