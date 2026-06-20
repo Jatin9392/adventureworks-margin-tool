@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How the Margin Tool Works</title>
+  <link rel="stylesheet" href="learn.css">
+</head>
+<body>
+  <header class="guide-header">
+    <div>
+      <p class="eyebrow">AdventureWorks Margin Tool</p>
+      <h1>How it works</h1>
+      <p class="intro">A finance-first guide you can understand and present without discussing code.</p>
+    </div>
+    <a class="back-link" href="index.html">Open calculator</a>
+  </header>
+
+  <main>
+    <nav class="story-nav" aria-label="Guide sections">
+      <a href="#purpose">1. Purpose</a>
+      <a href="#example">2. Example</a>
+      <a href="#flow">3. Data flow</a>
+      <a href="#manager">4. Manager summary</a>
+    </nav>
+
+    <section id="purpose" class="band">
+      <div class="section-heading">
+        <span class="step">1</span>
+        <div>
+          <p class="eyebrow">The business question</p>
+          <h2>What happens to profit when we offer a discount?</h2>
+        </div>
+      </div>
+      <p class="lead">The tool takes three numbers: list price, product cost, and proposed discount. It immediately shows the new selling price, gross profit, and margin.</p>
+
+      <div class="input-flow" aria-label="Calculation overview">
+        <div class="flow-item">
+          <span>Known</span>
+          <strong>List price</strong>
+          <small>What we normally charge</small>
+        </div>
+        <div class="operator">+</div>
+        <div class="flow-item">
+          <span>Known</span>
+          <strong>Standard cost</strong>
+          <small>What the product costs us</small>
+        </div>
+        <div class="operator">+</div>
+        <div class="flow-item emphasis">
+          <span>Scenario</span>
+          <strong>Discount</strong>
+          <small>What the user changes</small>
+        </div>
+        <div class="operator">=</div>
+        <div class="flow-item result">
+          <span>Answer</span>
+          <strong>New margin</strong>
+          <small>Updated instantly</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="example" class="band">
+      <div class="section-heading">
+        <span class="step">2</span>
+        <div>
+          <p class="eyebrow">Worked example</p>
+          <h2>Move the discount and follow the money</h2>
+        </div>
+      </div>
+
+      <div class="example-layout">
+        <div class="scenario-controls">
+          <h3>All-Purpose Bike Stand</h3>
+          <div class="known-values">
+            <div><span>List price</span><strong>$159.00</strong></div>
+            <div><span>Standard cost</span><strong>$59.47</strong></div>
+          </div>
+          <label for="exampleDiscount">Proposed discount: <output id="exampleDiscountLabel">10.0%</output></label>
+          <input id="exampleDiscount" type="range" min="0" max="60" step="0.1" value="10">
+          <div class="range-labels"><span>0%</span><span>60%</span></div>
+        </div>
+
+        <div class="scenario-results" aria-live="polite">
+          <div><span>New selling price</span><strong id="examplePrice">$143.10</strong></div>
+          <div><span>Gross profit</span><strong id="exampleProfit">$83.63</strong></div>
+          <div class="highlight"><span>New margin</span><strong id="exampleMargin">58.4%</strong></div>
+          <div><span>Margin movement</span><strong id="exampleMovement">-4.2 points</strong></div>
+        </div>
+      </div>
+
+      <div class="money-strip" aria-label="Selling price split between cost and profit">
+        <div id="costShare" class="cost-share"><span>Cost</span><strong>$59.47</strong></div>
+        <div id="profitShare" class="profit-share"><span>Profit</span><strong id="profitStrip">$83.63</strong></div>
+      </div>
+
+      <div class="formula-grid">
+        <div>
+          <h3>1. New selling price</h3>
+          <p>List price minus the discount amount.</p>
+          <code id="priceFormula">$159.00 - 10% = $143.10</code>
+        </div>
+        <div>
+          <h3>2. Gross profit</h3>
+          <p>New selling price minus product cost.</p>
+          <code id="profitFormula">$143.10 - $59.47 = $83.63</code>
+        </div>
+        <div>
+          <h3>3. Margin</h3>
+          <p>Gross profit divided by the new selling price.</p>
+          <code id="marginFormula">$83.63 / $143.10 = 58.4%</code>
+        </div>
+      </div>
+
+      <aside class="finance-note">
+        <strong>Margin is not markup.</strong> Margin divides profit by selling price. Markup divides profit by cost. This tool shows both, but the discount decision focuses on margin.
+      </aside>
+    </section>
+
+    <section id="flow" class="band">
+      <div class="section-heading">
+        <span class="step">3</span>
+        <div>
+          <p class="eyebrow">Behind the screen</p>
+          <h2>How information reaches the calculator</h2>
+        </div>
+      </div>
+
+      <div class="data-flow" aria-label="Data journey">
+        <div>
+          <span class="flow-number">1</span>
+          <strong>AdventureWorks2025</strong>
+          <p>Stores the product name, list price, and standard cost.</p>
+        </div>
+        <div class="arrow">&#8594;</div>
+        <div>
+          <span class="flow-number">2</span>
+          <strong>Product data</strong>
+          <p>The public demo receives a saved copy of 100 products.</p>
+        </div>
+        <div class="arrow">&#8594;</div>
+        <div>
+          <span class="flow-number">3</span>
+          <strong>Web calculator</strong>
+          <p>Your browser performs the calculations as the slider moves.</p>
+        </div>
+        <div class="arrow">&#8594;</div>
+        <div>
+          <span class="flow-number">4</span>
+          <strong>Decision support</strong>
+          <p>The user sees the financial impact before approving a discount.</p>
+        </div>
+      </div>
+
+      <div class="comparison">
+        <div>
+          <p class="status-label current">Current public demo</p>
+          <h3>Saved data snapshot</h3>
+          <p>Easy to share with anyone. Product values do not change until the saved data file is refreshed.</p>
+        </div>
+        <div>
+          <p class="status-label future">Future business version</p>
+          <h3>Live SQL connection</h3>
+          <p>A secure middle service reads the latest approved values from SQL Server whenever the page requests them.</p>
+        </div>
+      </div>
+
+      <aside class="security-note">
+        <strong>Why a middle service?</strong> A public webpage should never receive the SQL Server password or direct database access. The technical term for the secure middle service is an <b>API</b>.
+      </aside>
+    </section>
+
+    <section id="manager" class="band manager-band">
+      <div class="section-heading">
+        <span class="step">4</span>
+        <div>
+          <p class="eyebrow">Your presentation</p>
+          <h2>A 60-second explanation for your manager</h2>
+        </div>
+      </div>
+
+      <blockquote>
+        “This tool helps us understand the financial impact of a proposed discount before we offer it. We choose a product, adjust the discount, and immediately see the new selling price, gross profit, and margin. The current shared version uses a saved sample of AdventureWorks data. A production version could securely connect to our SQL database so approved product costs and prices stay current.”
+      </blockquote>
+
+      <div class="manager-grid">
+        <div><strong>Business value</strong><p>Faster and more consistent discount decisions.</p></div>
+        <div><strong>Main control</strong><p>Use approved cost and price data with agreed margin rules.</p></div>
+        <div><strong>Next step</strong><p>Confirm who owns the data and what minimum margin needs approval.</p></div>
+      </div>
+    </section>
+
+    <section class="band glossary">
+      <h2>Small technical dictionary</h2>
+      <dl>
+        <div><dt>Database</dt><dd>An organised store of business information. Here, it is Microsoft SQL Server.</dd></div>
+        <div><dt>SQL query</dt><dd>A request asking the database for specific information.</dd></div>
+        <div><dt>API</dt><dd>A secure messenger between the webpage and the database.</dd></div>
+        <div><dt>Frontend</dt><dd>The webpage the user sees and interacts with.</dd></div>
+        <div><dt>Real time</dt><dd>The results recalculate immediately when the discount changes.</dd></div>
+        <div><dt>GitHub Pages</dt><dd>The service currently publishing this shareable demonstration.</dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer>
+    <a href="index.html">Try the margin calculator</a>
+  </footer>
+  <script src="learn.js"></script>
+</body>
+</html>

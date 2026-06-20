@@ -62,6 +62,23 @@ header p {
   white-space: nowrap;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.learn-link {
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.learn-link:hover {
+  text-decoration: underline;
+}
+
 main {
   width: min(1180px, 100%);
   margin: 0 auto;
@@ -330,6 +347,10 @@ h2 {
   header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .header-actions {
+    flex-wrap: wrap;
   }
 
   .top-grid {
